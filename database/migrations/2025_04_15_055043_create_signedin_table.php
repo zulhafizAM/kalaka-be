@@ -14,7 +14,7 @@ return new class extends Migration {
             $table->id();
             $table->string('email');
             $table->string('username');
-            $table->string('signed_in_at');
+            $table->timestamp('signed_in_at')->useCurrent();
         });
     }
 

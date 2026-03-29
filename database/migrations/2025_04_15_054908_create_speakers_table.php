@@ -13,15 +13,17 @@ return new class extends Migration
     {
         Schema::create('speakers', function (Blueprint $table) {
             $table->id();
-            $table->string('gender');
+            $table->string('name');
+            $table->string('gender', 10);
             $table->integer('age');
-            $table->string('kalaka_id');
+            $table->string('kalaka_id')->nullable();
             $table->string('language');
-            $table->string('mobile');
+            $table->string('mobile', 20);
             $table->string('origin');
-            $table->integer('recordings');
-            $table->string('current');
-            $table->timestamps();
+            $table->integer('recordings')->default(0);
+            $table->string('current')->nullable();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });
     }
 

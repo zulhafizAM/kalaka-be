@@ -14,11 +14,12 @@ return new class extends Migration {
             $table->id();
             $table->string('kalaka_id');
             $table->string('full_name');
-            $table->string('email')->unique();
-            $table->boolean('emailVerified');
+            $table->string('email');
+            $table->string('emailVerified')->default('FALSE');
             $table->string('password');
             $table->string('uid');
-            $table->timestamps();
+            $table->date('created_at')->nullable();
+            $table->date('updated_at')->nullable();
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {

@@ -13,18 +13,18 @@ return new class extends Migration {
         Schema::create('speech', function (Blueprint $table) {
             $table->id();
             $table->string('category');
-            $table->string('date');
-            $table->string('kalaka_id');
+            $table->date('date');
+            $table->string('kalaka_id', 50);
             $table->string('language');
-            $table->string('mobile');
+            $table->string('mobile', 20)->nullable();
             $table->string('name');
             $table->string('origin');
-            $table->string('recordfile');
-            $table->string('textgrid');
-            $table->longText('textcontent');
-            $table->integer('speakerno');
-            $table->integer('public');
-            $table->timestamps();
+            $table->string('recordfile')->nullable();
+            $table->string('textgrid')->nullable();
+            $table->string('rttm')->nullable();
+            $table->longText('textcontent')->nullable();
+            $table->integer('speakerno')->default(1);
+            $table->integer('public')->default(1);
         });
     }
 
