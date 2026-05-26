@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Models\Speech;
 
 class SpeechController extends Controller
@@ -16,7 +17,11 @@ class SpeechController extends Controller
             return response()->json(['message' => 'Invalid sort direction. Use "asc" or "desc".'], 400);
         }
 
-        $data = Speech::select('*')
+        $data = Speech::select(
+                'id', 'name', 'language', 'date', 'recordfile', 'origin',
+                'category', 'kalaka_id', 'mobile', 'speakerno', 'public',
+                DB::raw('(textcontent IS NOT NULL AND textcontent != "") as has_textcontent')
+            )
             ->orderBy($sortKey, $sortDirection)
             ->get();
 
